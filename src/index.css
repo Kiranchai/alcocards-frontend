@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --navbar-height: 4rem;
+  --section-height: calc(100vh - (var(--navbar-height)));
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+input {
+  min-width: none;
+  max-width: none;
+}
+input:focus {
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
