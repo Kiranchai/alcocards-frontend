@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Cards from "./components/Cards";
+import MyCards from "./components/MyCards";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
@@ -13,10 +13,10 @@ const App = (): React.ReactElement => {
         <Route path="/" index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/cards" element={<Cards />} />
+          <Route path="/cards" element={<MyCards />} />
         </Route>
       </Route>
-      <Route path="*" element={<NotFound />} />
+      {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );
 };
