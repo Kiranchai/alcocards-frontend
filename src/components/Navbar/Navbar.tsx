@@ -24,8 +24,7 @@ const Navbar = () => {
         <div className="navbar-left">
           <span>
             <NavLink className="logo-link" to="/">
-              <span style={{ color: "rgb(0, 180, 0)" }}>FIT</span>
-              <span>TIME</span>
+              Alcocards
             </NavLink>
           </span>
 
@@ -40,11 +39,11 @@ const Navbar = () => {
             name={"Moje karty"}
             collapse={handleOnToggle}
           />
-          <NavbarListItem
+          {/* <NavbarListItem
             destination={"account"}
             name={"Konto"}
             collapse={handleOnToggle}
-          />
+          /> */}
 
           {currentUser?.currentUser?.isLoggedIn ? (
             <li className="navbar-link" onClick={handleSignout}>
