@@ -39,11 +39,11 @@ const Navbar = () => {
             name={"Moje karty"}
             collapse={handleOnToggle}
           />
-          {/* <NavbarListItem
-            destination={"account"}
-            name={"Konto"}
+          <NavbarListItem
+            destination={"offer"}
+            name={"Oferta"}
             collapse={handleOnToggle}
-          /> */}
+          />
 
           {currentUser?.currentUser?.isLoggedIn ? (
             <li className="navbar-link" onClick={handleSignout}>

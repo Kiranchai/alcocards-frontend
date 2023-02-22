@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import Offer from "./components/Offer/Offer";
+import Product from "./components/Product/Product";
 
 const App = (): React.ReactElement => {
   return (
@@ -12,6 +14,8 @@ const App = (): React.ReactElement => {
       <Route element={<Navbar />}>
         <Route path="/" index element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/offer" element={<Offer />} />
+        <Route path="/offer/:id" element={<Product />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/cards" element={<MyCards />} />
         </Route>
