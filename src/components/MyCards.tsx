@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import fetchHeaders from "../utils/Headers";
 import { SERVER_DOMAIN } from "../utils/Variables";
+import IProduct from "../interfaces/IProduct";
 
 const MyCards = () => {
-  interface ICard {
-    name: String;
-  }
-
-  const [cards, setCards] = useState<Array<ICard> | null>([]);
+  const [cards, setCards] = useState<Array<IProduct> | null>([]);
 
   useEffect(() => {
     fetch(`${SERVER_DOMAIN}/api/cards/`, {
@@ -28,7 +25,7 @@ const MyCards = () => {
       <h1>My Cards</h1>
       {cards &&
         cards.map((card) => {
-          return <span>{card.name}</span>;
+          return <span key={card._id as React.Key}>{card.name}</span>;
         })}
     </div>
   );
