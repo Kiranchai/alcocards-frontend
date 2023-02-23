@@ -4,4 +4,5 @@ export default interface IProduct {
     price: String;
     stripeId: String;
     description: String;
+    pubId: Number;
 }

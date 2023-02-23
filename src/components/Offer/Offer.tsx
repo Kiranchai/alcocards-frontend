@@ -26,8 +26,8 @@ const Offer = () => {
         products.map((product) => {
           return (
             <NavLink
-              to={`/offer/${product._id}`}
-              key={product._id as React.Key}
+              to={`/offer/${product.pubId}`}
+              key={product.pubId as React.Key}
             >
               {" "}
               {product.name}
