@@ -1,0 +1,9 @@
+.home-section{
+    background: var(--bg-color);
+}
+
+.welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
