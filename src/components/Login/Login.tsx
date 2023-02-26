@@ -28,7 +28,7 @@ const Login = () => {
     })
       .then((data) => data.json())
       .then((data) => {
-        if (data.message && data.message !== "Success") {
+        if (data.type === "error") {
           setError(data.message);
         }
 

@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Navigate, NavLink } from "react-router-dom";
 import { SERVER_DOMAIN } from "../../utils/Variables";
 import fetchHeaders from "../../utils/Headers";
+import Modal from "../Modal/Modal";
 
 const Register = () => {
   const currentUser = useAuth();
@@ -11,6 +12,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [modalShown, setModalShown] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +39,8 @@ const Register = () => {
         if (data.type === "error") {
           setError(data.message);
         } else {
-          console.log(data.message);
+          setModalMessage(data.message);
+          setModalShown(true);
         }
       })
       .catch((err) => {
@@ -57,6 +61,14 @@ const Register = () => {
             <Navigate to={"/"} />
           ) : (
             <section className="mh login-section">
+              <Modal
+                open={modalShown}
+                onClose={() => {
+                  setModalShown(false);
+                }}
+                message={modalMessage}
+              />
+
               <div className="login-form-wrapper">
                 <h2 className="login-header">Rejestracja</h2>
                 {error && <div className="error-container">{error}</div>}
