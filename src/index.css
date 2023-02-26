@@ -3,6 +3,8 @@
 :root {
   --navbar-height: 4rem;
   --section-height: calc(100vh - (var(--navbar-height)));
+  --bg-color:#2D142C;
+  --bg-secondary: #510232;
 }
 
 * {
@@ -10,6 +12,7 @@
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  color: white;
 }
 
 ol,

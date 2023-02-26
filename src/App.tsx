@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import MyCards from "./components/MyCards";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
 import NotFound from "./components/NotFound";
