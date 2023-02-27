@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import fetchHeaders from "../utils/Headers";
-import { SERVER_DOMAIN } from "../utils/Variables";
-import IProduct from "../interfaces/IProduct";
+import fetchHeaders from "../../utils/Headers";
+import { SERVER_DOMAIN } from "../../utils/Variables";
+import IProduct from "../../interfaces/IProduct";
+import "./MyCards.css";
 
 const MyCards = () => {
   const [cards, setCards] = useState<Array<IProduct> | null>([]);
@@ -21,13 +22,13 @@ const MyCards = () => {
   }, []);
 
   return (
-    <div>
+    <section className="mh mycards-section">
       <h1>My Cards</h1>
       {cards &&
         cards.map((card) => {
           return <span key={card._id as React.Key}>{card.name}</span>;
         })}
-    </div>
+    </section>
   );
 };
 
