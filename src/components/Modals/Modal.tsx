@@ -15,7 +15,12 @@ const Modal = ({
   return ReactDOM.createPortal(
     <>
       <div className="modal-layout"></div>
-      <div className="modal">{message}</div>
+      <div className="modal">
+        <span className="modal-message">{message}</span>
+        <button className="submit-btn" onClick={onClose}>
+          Rozumiem
+        </button>
+      </div>
     </>,
     document.getElementById("portal")!
   );

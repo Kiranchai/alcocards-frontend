@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { Navigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { SERVER_DOMAIN } from "../../utils/Variables";
 import fetchHeaders from "../../utils/Headers";
-import Modal from "../Modal/Modal";
+import Modal from "../Modals/Modal";
 
 const Register = () => {
   const currentUser = useAuth();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,7 +65,7 @@ const Register = () => {
               <Modal
                 open={modalShown}
                 onClose={() => {
-                  setModalShown(false);
+                  navigate("/login", { replace: true });
                 }}
                 message={modalMessage}
               />
