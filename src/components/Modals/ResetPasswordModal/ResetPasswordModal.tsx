@@ -4,37 +4,37 @@ import { IModalProps } from "../../../interfaces/IModal";
 import fetchHeaders from "../../../utils/Headers";
 import { SERVER_DOMAIN } from "../../../utils/Variables";
 
-const Modal = ({ open, onClose }: IModalProps) => {
+const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
   const [email, setEmail] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [error, setError] = useState("");
 
   if (!open) return null;
 
-  const handleResendLink = (e: React.FormEvent) => {
+  const handleResetPassword = (e: React.FormEvent) => {
     e.preventDefault();
-    setButtonDisabled(true);
-    setError("");
-    fetch(`${SERVER_DOMAIN}/api/auth/resendLink`, {
-      method: "POST",
-      headers: fetchHeaders,
-      body: JSON.stringify({ email }),
-    })
-      .then((data) => data.json())
-      .then((res) => {
-        if (res.type !== "error") {
-          setEmail("");
-          onClose();
-        } else {
-          setError(res.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setButtonDisabled(false);
-      });
+    // setButtonDisabled(true);
+    // setError("");
+    // fetch(`${SERVER_DOMAIN}/api/auth/resendLink`, {
+    //   method: "POST",
+    //   headers: fetchHeaders,
+    //   body: JSON.stringify({ email }),
+    // })
+    //   .then((data) => data.json())
+    //   .then((res) => {
+    //     if (res.type !== "error") {
+    //       setEmail("");
+    //       onClose();
+    //     } else {
+    //       setError(res.message);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     setButtonDisabled(false);
+    //   });
   };
 
   return ReactDOM.createPortal(
@@ -42,7 +42,7 @@ const Modal = ({ open, onClose }: IModalProps) => {
       <div className="modal-layout"></div>
       <div className="modal">
         <span className="modal-message">
-          Podaj adres email swojego konta. Ponownie wyślemy link aktywacyjny
+          Podaj adres email swojego konta. Wyślemy link zmiany hasła
         </span>
         <form>
           <input
@@ -65,7 +65,7 @@ const Modal = ({ open, onClose }: IModalProps) => {
             <button
               className="submit-btn"
               type="submit"
-              onClick={handleResendLink}
+              onClick={handleResetPassword}
               disabled={buttonDisabled}
             >
               Wyślij
@@ -81,4 +81,4 @@ const Modal = ({ open, onClose }: IModalProps) => {
   );
 };
 
-export default Modal;
+export default ResendPasswordModal;

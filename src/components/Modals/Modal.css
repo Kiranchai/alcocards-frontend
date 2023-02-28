@@ -20,9 +20,10 @@
 
 .modal-message{
     text-shadow: 2px 1px 1px black;
-    text-align: center;
-    font-size: 1.35rem;
+    /* text-align: center; */
+    font-size: 1.25rem;
     margin-bottom: .5rem;
+    padding: .3rem;
 }
 
 .modal-layout{

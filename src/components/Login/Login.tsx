@@ -5,6 +5,7 @@ import fetchHeaders from "../../utils/Headers";
 import { useState } from "react";
 import ResendTokenModal from "../Modals/ResendTokenModal/ResendTokenModal";
 import "./Login.css";
+import ResetPasswordModal from "../Modals/ResetPasswordModal/ResetPasswordModal";
 
 const Login = () => {
   const currentUser = useAuth();
@@ -13,6 +14,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [modalShown, setModalShown] = useState(false);
+  const [resetPasswordModalShown, setResetPasswordModalShown] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +53,10 @@ const Login = () => {
     setModalShown(true);
   };
 
+  const handleResetPasswordModalDisplay = () => {
+    setResetPasswordModalShown(true);
+  };
+
   return (
     <>
       {currentUser?.pending ? (
@@ -66,7 +72,13 @@ const Login = () => {
                 onClose={() => {
                   setModalShown(false);
                 }}
-                message={"Podaj adres email swojego konta"}
+              />
+
+              <ResetPasswordModal
+                open={resetPasswordModalShown}
+                onClose={() => {
+                  setResetPasswordModalShown(false);
+                }}
               />
 
               <section className="mh login-section">
@@ -93,12 +105,16 @@ const Login = () => {
                       className="form-input"
                       placeholder="********"
                     />
-                    <NavLink
-                      to={"/password-recovery"}
-                      className="forgot-password"
+                    <span
+                      className="nav-link"
+                      style={{
+                        color: "var(--blueish)",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleResetPasswordModalDisplay}
                     >
                       Nie pamiętam hasła
-                    </NavLink>
+                    </span>
                     <button
                       type="submit"
                       onClick={handleSubmit}

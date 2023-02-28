@@ -1,15 +1,8 @@
 import ReactDOM from "react-dom";
+import { IModalProps } from "../../interfaces/IModal";
 import "./Modal.css";
 
-const Modal = ({
-  message,
-  open,
-  onClose,
-}: {
-  message: string;
-  open: boolean;
-  onClose: () => void;
-}) => {
+const Modal = ({ message, open, onClose }: IModalProps) => {
   if (!open) return null;
 
   return ReactDOM.createPortal(
