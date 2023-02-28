@@ -110,6 +110,9 @@ const Login = () => {
                       style={{
                         color: "var(--blueish)",
                         cursor: "pointer",
+                        fontSize: ".95rem",
+                        marginBottom: ".5rem",
+                        textShadow: "1px 1px 2px black",
                       }}
                       onClick={handleResetPasswordModalDisplay}
                     >
