@@ -3,6 +3,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import "./Navbar.css";
 import Hamburger from "hamburger-react";
 import { useAuth } from "../../contexts/AuthContext";
+import { MdLogout, MdShoppingCart, MdLogin } from "react-icons/md";
+import { GiCardPlay } from "react-icons/gi";
 
 const Navbar = () => {
   const currentUser = useAuth();
@@ -35,11 +37,13 @@ const Navbar = () => {
 
         <ul className={iconIsActive ? "navbar-list showed" : "navbar-list"}>
           <NavbarListItem
+            icon={<GiCardPlay />}
             destination={"cards"}
             name={"Moje karty"}
             collapse={handleOnToggle}
           />
           <NavbarListItem
+            icon={<MdShoppingCart />}
             destination={"offer"}
             name={"Oferta"}
             collapse={handleOnToggle}
@@ -48,9 +52,11 @@ const Navbar = () => {
           {currentUser?.currentUser?.isLoggedIn ? (
             <li className="navbar-link" onClick={handleSignout}>
               Wyloguj
+              <MdLogout />
             </li>
           ) : (
             <NavbarListItem
+              icon={<MdLogin />}
               name={"Zaloguj"}
               destination={"login"}
               collapse={handleOnToggle}
@@ -69,9 +75,15 @@ interface IListItemProps {
   name: String;
   destination: String;
   collapse: () => void;
+  icon: React.ReactNode;
 }
 
-const NavbarListItem = ({ name, destination, collapse }: IListItemProps) => {
+const NavbarListItem = ({
+  name,
+  destination,
+  collapse,
+  icon,
+}: IListItemProps) => {
   return (
     <li
       onClick={() => {
@@ -80,6 +92,7 @@ const NavbarListItem = ({ name, destination, collapse }: IListItemProps) => {
     >
       <NavLink className="navbar-link" to={`/${destination}`}>
         {name}
+        {icon}
       </NavLink>
     </li>
   );
