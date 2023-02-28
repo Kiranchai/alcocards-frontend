@@ -13,28 +13,28 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
 
   const handleResetPassword = (e: React.FormEvent) => {
     e.preventDefault();
-    // setButtonDisabled(true);
-    // setError("");
-    // fetch(`${SERVER_DOMAIN}/api/auth/resendLink`, {
-    //   method: "POST",
-    //   headers: fetchHeaders,
-    //   body: JSON.stringify({ email }),
-    // })
-    //   .then((data) => data.json())
-    //   .then((res) => {
-    //     if (res.type !== "error") {
-    //       setEmail("");
-    //       onClose();
-    //     } else {
-    //       setError(res.message);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
-    //   .finally(() => {
-    //     setButtonDisabled(false);
-    //   });
+    setButtonDisabled(true);
+    setError("");
+    fetch(`${SERVER_DOMAIN}/api/auth/sendPasswordReset`, {
+      method: "POST",
+      headers: fetchHeaders,
+      body: JSON.stringify({ email }),
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        if (res.type !== "error") {
+          setEmail("");
+          onClose();
+        } else {
+          setError(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setButtonDisabled(false);
+      });
   };
 
   return ReactDOM.createPortal(
