@@ -54,7 +54,7 @@
     text-shadow: 2px 2px 2px black;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     .offer-products{
         grid-template-columns: 1fr;
         gap: 3rem;

@@ -30,7 +30,10 @@ const Offer = () => {
             {products &&
               products.map((product) => {
                 return (
-                  <div className="offer-single-product">
+                  <div
+                    className="offer-single-product"
+                    key={product.pubId as React.Key}
+                  >
                     <NavLink
                       className="offer-inner-wrapper"
                       to={`/offer/${product.pubId}`}
