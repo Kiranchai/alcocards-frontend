@@ -1,4 +1,5 @@
 import { useState, useEffect, createRef, useRef } from "react";
+import { handleTouchMove, handleTouchStart } from "../../utils/SwipeListener";
 import Footer from "../Footer/Footer";
 import "./Game.css";
 
@@ -16,6 +17,37 @@ const Game = () => {
     itemsRef.current[nextCard]?.classList.replace("hidden", "next");
   }, []);
 
+  const rightSwipe = () => {
+    if (nextCard === itemsRef.current.length) {
+      return;
+    }
+    setPrevCard((prevState) => prevState + 1);
+    setCurrentCard((prevState) => prevState + 1);
+    setNextCard((prevState) => prevState + 1);
+
+    itemsRef.current[prevCard]?.classList.replace("prev", "hidden-after");
+    itemsRef.current[currentCard]?.classList.replace("current", "prev");
+    itemsRef.current[nextCard]?.classList.replace("next", "current");
+    itemsRef.current[nextCard + 1]?.classList.replace("hidden", "next");
+    console.log(prevCard, currentCard, nextCard);
+  };
+
+  const leftSwipe = () => {
+    if (prevCard === -2) {
+      return;
+    }
+    setPrevCard((prevState) => prevState - 1);
+    setCurrentCard((prevState) => prevState - 1);
+    setNextCard((prevState) => prevState - 1);
+
+    itemsRef.current[prevCard]?.classList.replace("hidden-after", "prev");
+    itemsRef.current[currentCard]?.classList.replace("prev", "current");
+    itemsRef.current[nextCard]?.classList.replace("current", "next");
+    itemsRef.current[nextCard + 1]?.classList.replace("next", "hidden");
+
+    console.log(prevCard, currentCard, nextCard);
+  };
+
   return (
     <section
       style={{
@@ -23,7 +55,13 @@ const Game = () => {
       }}
     >
       <div className="mh game-section">
-        <div className="cards-container">
+        <div
+          className="cards-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={(e) => {
+            handleTouchMove(e, rightSwipe, leftSwipe);
+          }}
+        >
           {cards.map((card, i) => {
             return (
               <div
@@ -39,20 +77,7 @@ const Game = () => {
         <button
           style={{ marginTop: "800px" }}
           onClick={() => {
-            if (nextCard === itemsRef.current.length) {
-              return console.log("now");
-            }
-            setPrevCard((prevState) => prevState + 1);
-            setCurrentCard((prevState) => prevState + 1);
-            setNextCard((prevState) => prevState + 1);
-
-            itemsRef.current[prevCard]?.classList.replace(
-              "prev",
-              "hidden-after"
-            );
-            itemsRef.current[currentCard]?.classList.replace("current", "prev");
-            itemsRef.current[nextCard]?.classList.replace("next", "current");
-            itemsRef.current[nextCard + 1]?.classList.replace("hidden", "next");
+            rightSwipe();
           }}
         >
           halo
