@@ -1,0 +1,64 @@
+.game-section{
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cards-container{
+    position: absolute;
+    left: 50%;
+    /* display: flex; */
+    gap: .5rem;
+}
+
+
+.card{
+    position: absolute;
+    aspect-ratio: 5/8;
+    width: 90vw;
+    max-width: 25rem;
+    background-color: rgb(121, 121, 121);
+    transform: translateX(-50%);
+    transition: all .5s ease-in-out;
+}
+
+.current{
+    z-index: 7;
+}
+
+.next{
+    scale: .8;
+    opacity: .8;
+    z-index: 6;
+    -webkit-transform: translate(-20%, 3%) rotate(5deg);
+            transform: translate(-20%, 3%) rotate(5deg);
+    -webkit-filter: blur(5px);
+            filter: blur(5px);
+}
+
+.prev{
+    scale: .8;
+    opacity: .5;
+    z-index: 5;
+    transform: translate(-100%, 3%) rotate(-7deg);
+    filter: blur(5px);
+    -webkit-transform: translate(-100%, 3%) rotate(-7deg);
+    -webkit-filter: blur(5px);
+}
+
+.hidden{
+    scale: .6;
+    opacity: 0;
+            transform: translate(10%, 3%) rotate(5deg);
+    -webkit-transform: translate(10%, 3%) rotate(5deg);
+}
+
+.hidden-after{  
+    z-index: 4;
+    scale: .6;
+    opacity: 0;
+    -webkit-transform: translateX(-200%) rotate(-8deg);
+            transform: translateX(-200%) rotate(-8deg);
+}

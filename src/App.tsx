@@ -8,6 +8,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 import Offer from "./components/Offer/Offer";
 import Product from "./components/Product/Product";
 import Register from "./components/Register/Register";
+import Game from "./components/Game/Game";
 
 const App = (): React.ReactElement => {
   return (
@@ -20,6 +21,7 @@ const App = (): React.ReactElement => {
         <Route path="/offer/:id" element={<Product />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/cards" element={<MyCards />} />
+          <Route path="/cards/:id" element={<Game />} />
         </Route>
       </Route>
       {/* <Route path="*" element={<NotFound />} /> */}
