@@ -24,7 +24,7 @@ const App = (): React.ReactElement => {
           <Route path="/cards/:id" element={<Game />} />
         </Route>
       </Route>
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

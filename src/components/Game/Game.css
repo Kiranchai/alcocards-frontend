@@ -26,6 +26,7 @@
 
 .current{
     z-index: 7;
+    opacity: 1;
 }
 
 .next{

@@ -6,46 +6,47 @@ import "./Game.css";
 const Game = () => {
   const [cards, setCards] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [currentCard, setCurrentCard] = useState(0);
-  const [prevCard, setPrevCard] = useState(-1);
-  const [nextCard, setNextCard] = useState(1);
   const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
 
-  useEffect(() => {
+  const getItemsRef = () => {
     itemsRef.current = itemsRef.current.slice(0, cards.length);
-
     itemsRef.current[currentCard]?.classList.replace("hidden", "current");
-    itemsRef.current[nextCard]?.classList.replace("hidden", "next");
+    itemsRef.current[currentCard + 1]?.classList.replace("hidden", "next");
+  };
+
+  useEffect(() => {
+    getItemsRef();
   }, []);
 
+  useEffect(() => {
+    const hiddenAfterRef = itemsRef.current[currentCard - 2];
+    const prevCardRef = itemsRef.current[currentCard - 1];
+    const currentCardRef = itemsRef.current[currentCard];
+    const nextCardRef = itemsRef.current[currentCard + 1];
+    const hiddenRef = itemsRef.current[currentCard + 2];
+
+    hiddenAfterRef?.classList.replace(
+      hiddenAfterRef.classList[1],
+      "hidden-after"
+    );
+    prevCardRef?.classList.replace(prevCardRef.classList[1], "prev");
+    currentCardRef?.classList.replace(currentCardRef.classList[1], "current");
+    nextCardRef?.classList.replace(nextCardRef.classList[1], "next");
+    hiddenRef?.classList.replace(hiddenRef.classList[1], "hidden");
+  }, [currentCard]);
+
   const rightSwipe = () => {
-    if (nextCard === itemsRef.current.length) {
+    if (currentCard + 1 === itemsRef.current.length) {
       return;
     }
-    setPrevCard((prevState) => prevState + 1);
-    setCurrentCard((prevState) => prevState + 1);
-    setNextCard((prevState) => prevState + 1);
-
-    itemsRef.current[prevCard]?.classList.replace("prev", "hidden-after");
-    itemsRef.current[currentCard]?.classList.replace("current", "prev");
-    itemsRef.current[nextCard]?.classList.replace("next", "current");
-    itemsRef.current[nextCard + 1]?.classList.replace("hidden", "next");
-    console.log(prevCard, currentCard, nextCard);
+    setCurrentCard(currentCard + 1);
   };
 
   const leftSwipe = () => {
-    if (prevCard === -2) {
+    if (currentCard - 1 === -1) {
       return;
     }
-    setPrevCard((prevState) => prevState - 1);
-    setCurrentCard((prevState) => prevState - 1);
-    setNextCard((prevState) => prevState - 1);
-
-    itemsRef.current[prevCard]?.classList.replace("hidden-after", "prev");
-    itemsRef.current[currentCard]?.classList.replace("prev", "current");
-    itemsRef.current[nextCard]?.classList.replace("current", "next");
-    itemsRef.current[nextCard + 1]?.classList.replace("next", "hidden");
-
-    console.log(prevCard, currentCard, nextCard);
+    setCurrentCard(currentCard - 1);
   };
 
   return (
