@@ -1,5 +1,6 @@
 import { useState, useEffect, createRef, useRef } from "react";
 import { handleTouchMove, handleTouchStart } from "../../utils/SwipeListener";
+import { MdArrowForward, MdArrowBack } from "react-icons/md";
 import Footer from "../Footer/Footer";
 import "./Game.css";
 
@@ -71,18 +72,35 @@ const Game = () => {
                 key={i}
               >
                 {card}
+                {i === 0 ? (
+                  ""
+                ) : (
+                  <MdArrowBack
+                    className="card-switch-btn left"
+                    onClick={leftSwipe}
+                  />
+                )}
+
+                {i === cards.length - 1 ? (
+                  ""
+                ) : (
+                  <MdArrowForward
+                    className="card-switch-btn right"
+                    onClick={rightSwipe}
+                  />
+                )}
               </div>
             );
           })}
         </div>
-        <button
+        {/* <button
           style={{ marginTop: "800px" }}
           onClick={() => {
             rightSwipe();
           }}
         >
           halo
-        </button>
+        </button> */}
       </div>
 
       <Footer />

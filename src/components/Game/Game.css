@@ -7,34 +7,44 @@
 }
 
 .cards-container{
-    position: absolute;
-    left: 50%;
+    /* position: absolute; */
+    /* left: 50%; */
     /* display: flex; */
-    gap: .5rem;
+    /* gap: .5rem; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
 
 .card{
-    position: absolute;
-    aspect-ratio: 5/8;
-    width: 90vw;
-    max-width: 25rem;
+    position:absolute;
+    aspect-ratio: 9/16;
+    max-width: 25rem; 
+    max-height: 75vh;
+    width: 100%;
     background-color: rgb(121, 121, 121);
-    transform: translateX(-50%);
     transition: all .5s ease-in-out;
+    padding: 1rem;
+    border-radius: .75rem;
+    
 }
 
 .current{
     z-index: 7;
     opacity: 1;
+    -webkit-box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1);
+-moz-box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1);
+box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1);
 }
 
 .next{
     scale: .8;
     opacity: .8;
     z-index: 6;
-    -webkit-transform: translate(-20%, 3%) rotate(5deg);
-            transform: translate(-20%, 3%) rotate(5deg);
+    -webkit-transform: translate(50%, 3%) rotate(5deg);
+            transform: translate(50%, 3%) rotate(5deg);
     -webkit-filter: blur(5px);
             filter: blur(5px);
 }
@@ -43,23 +53,46 @@
     scale: .8;
     opacity: .5;
     z-index: 5;
-    transform: translate(-100%, 3%) rotate(-7deg);
+    transform: translate(-50%, 3%) rotate(-7deg);
     filter: blur(5px);
-    -webkit-transform: translate(-100%, 3%) rotate(-7deg);
+    -webkit-transform: translate(-50%, 3%) rotate(-7deg);
     -webkit-filter: blur(5px);
 }
 
 .hidden{
     scale: .6;
     opacity: 0;
-            transform: translate(10%, 3%) rotate(5deg);
-    -webkit-transform: translate(10%, 3%) rotate(5deg);
+            transform: translate(90%, 3%) rotate(5deg);
+    -webkit-transform: translate(90%, 3%) rotate(5deg);
 }
 
 .hidden-after{  
     z-index: 4;
     scale: .6;
     opacity: 0;
-    -webkit-transform: translateX(-200%) rotate(-8deg);
-            transform: translateX(-200%) rotate(-8deg);
+    -webkit-transform: translateX(-90%) rotate(-8deg);
+            transform: translateX(-90%) rotate(-8deg);
+}
+
+.card-switch-btn{
+    position: absolute;
+    top: 50%;
+    font-size: clamp(1.25rem,5vw,1.5rem);
+    opacity: .3;
+    transform: translateY(-50%);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.left{
+    left: 3%;
+}
+
+.right{
+    right: 3%;
+}
+
+.card-switch-btn:hover{
+    opacity: 1;
+
 }
