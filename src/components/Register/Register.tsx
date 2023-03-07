@@ -22,6 +22,7 @@ const Register = () => {
     setButtonDisabled(true);
 
     if (password !== confirmPassword) {
+      setButtonDisabled(false);
       return setError("Podane hasła się różnią");
     }
 

@@ -93,14 +93,6 @@ const Game = () => {
             );
           })}
         </div>
-        {/* <button
-          style={{ marginTop: "800px" }}
-          onClick={() => {
-            rightSwipe();
-          }}
-        >
-          halo
-        </button> */}
       </div>
 
       <Footer />

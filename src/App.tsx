@@ -9,6 +9,8 @@ import Offer from "./components/Offer/Offer";
 import Product from "./components/Product/Product";
 import Register from "./components/Register/Register";
 import Game from "./components/Game/Game";
+import EmailVerification from "./components/EmailVerification/EmailVerification";
+import PasswordRecovery from "./components/PasswordRecovery/PasswordRecovery";
 
 const App = (): React.ReactElement => {
   return (
@@ -23,7 +25,9 @@ const App = (): React.ReactElement => {
           <Route path="/cards" element={<MyCards />} />
           <Route path="/cards/:id" element={<Game />} />
         </Route>
+        <Route path="/passwordRecovery/:token" element={<PasswordRecovery />} />
       </Route>
+      <Route path="/verificateEmail/:token" element={<EmailVerification />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

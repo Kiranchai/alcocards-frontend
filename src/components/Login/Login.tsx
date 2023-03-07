@@ -1,5 +1,5 @@
 import { useAuth } from "../../contexts/AuthContext";
-import { Navigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink, useLocation } from "react-router-dom";
 import { SERVER_DOMAIN } from "../../utils/Variables";
 import fetchHeaders from "../../utils/Headers";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import "./Login.css";
 import ResetPasswordModal from "../Modals/ResetPasswordModal/ResetPasswordModal";
 
 const Login = () => {
+  const location = useLocation();
   const currentUser = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,6 +86,16 @@ const Login = () => {
                 <div className="login-form-wrapper">
                   <h2 className="login-header">Logowanie</h2>
                   {error && <div className="error-container">{error}</div>}
+                  {location.state && location.state.type === "error" && (
+                    <div className="error-container">
+                      {location.state.message}
+                    </div>
+                  )}
+                  {location.state && location.state.type === "success" && (
+                    <div className="success-container">
+                      {location.state.message}
+                    </div>
+                  )}
 
                   <form className="login-form">
                     <label className="login-label">Email</label>
