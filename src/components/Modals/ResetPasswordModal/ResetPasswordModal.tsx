@@ -1,3 +1,4 @@
+import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { IModalProps } from "../../../interfaces/IModal";
@@ -8,6 +9,7 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
   const [email, setEmail] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   if (!open) return null;
 
@@ -15,6 +17,8 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
     e.preventDefault();
     setButtonDisabled(true);
     setError("");
+    setIsLoading(true);
+
     fetch(`${SERVER_DOMAIN}/api/auth/sendPasswordReset`, {
       method: "POST",
       headers: fetchHeaders,
@@ -34,6 +38,7 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
       })
       .finally(() => {
         setButtonDisabled(false);
+        setIsLoading(false);
       });
   };
 
@@ -41,10 +46,20 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
     <>
       <div className="modal-layout"></div>
       <div className="modal">
+        <h2 className="modal-header">Zmiana hasła</h2>
         <span className="modal-message">
           Podaj adres email swojego konta. Wyślemy link zmiany hasła
         </span>
         <form>
+          <label
+            htmlFor="email"
+            style={{
+              textShadow: "1px 1px 1px black",
+              color: "rgb(232, 232, 232)",
+            }}
+          >
+            Email
+          </label>
           <input
             type="email"
             name="email"
@@ -68,7 +83,11 @@ const ResendPasswordModal = ({ open, onClose }: IModalProps) => {
               onClick={handleResetPassword}
               disabled={buttonDisabled}
             >
-              Wyślij
+              {isLoading ? (
+                <CircularProgress className="loading-anim" />
+              ) : (
+                "Wyślij"
+              )}
             </button>
             <button className="submit-btn cancel" onClick={onClose}>
               Anuluj

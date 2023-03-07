@@ -4,6 +4,7 @@ import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { SERVER_DOMAIN } from "../../utils/Variables";
 import fetchHeaders from "../../utils/Headers";
 import Modal from "../Modals/Modal";
+import { CircularProgress } from "@mui/material";
 
 const Register = () => {
   const currentUser = useAuth();
@@ -15,13 +16,16 @@ const Register = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [modalShown, setModalShown] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setButtonDisabled(true);
+    setIsLoading(true);
 
     if (password !== confirmPassword) {
+      setIsLoading(false);
       setButtonDisabled(false);
       return setError("Podane hasła się różnią");
     }
@@ -51,6 +55,7 @@ const Register = () => {
       })
       .finally(() => {
         setButtonDisabled(false);
+        setIsLoading(false);
       });
   };
   return (
@@ -106,8 +111,8 @@ const Register = () => {
                   />
 
                   <span className="password-requirements">
-                    Użyj co najmniej ośmiu znaków, w tym jednocześnie liter,
-                    cyfr i symboli #?!@$%^&-
+                    Użyj co najmniej ośmiu znaków, w tym jednocześnie małych i
+                    wielkich liter, cyfr i symboli <b>#?!@$%^&-</b>
                   </span>
                   <button
                     type="submit"
@@ -115,7 +120,11 @@ const Register = () => {
                     disabled={buttonDisabled}
                     className="submit-btn"
                   >
-                    Zarejestruj
+                    {isLoading ? (
+                      <CircularProgress className="loading-anim" />
+                    ) : (
+                      "Zarejestruj"
+                    )}
                   </button>
                 </form>
               </div>

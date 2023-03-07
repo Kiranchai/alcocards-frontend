@@ -6,6 +6,7 @@ import { useState } from "react";
 import ResendTokenModal from "../Modals/ResendTokenModal/ResendTokenModal";
 import "./Login.css";
 import ResetPasswordModal from "../Modals/ResetPasswordModal/ResetPasswordModal";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Login = () => {
   const location = useLocation();
@@ -16,11 +17,14 @@ const Login = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [modalShown, setModalShown] = useState(false);
   const [resetPasswordModalShown, setResetPasswordModalShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setButtonDisabled(true);
     setError("");
+
     const credentials = {
       email,
       password,
@@ -46,6 +50,7 @@ const Login = () => {
         console.log(err);
       })
       .finally(() => {
+        setIsLoading(false);
         setButtonDisabled(false);
       });
   };
@@ -135,7 +140,11 @@ const Login = () => {
                       disabled={buttonDisabled}
                       className="submit-btn"
                     >
-                      Zaloguj
+                      {isLoading ? (
+                        <CircularProgress className="loading-anim" />
+                      ) : (
+                        "Zaloguj"
+                      )}
                     </button>
                   </form>
                 </div>

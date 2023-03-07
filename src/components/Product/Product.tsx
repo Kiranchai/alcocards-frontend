@@ -6,6 +6,7 @@ import axios from "axios";
 import IProduct from "../../interfaces/IProduct";
 import "./Product.css";
 import Footer from "../Footer/Footer";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Product = () => {
   const { id } = useParams();
@@ -22,10 +23,12 @@ const Product = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setIsLoading(false);
         setProduct(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -36,11 +39,11 @@ const Product = () => {
         }}
       >
         <section className="mh product-section">
-          <div className="product-grid-container">
-            {isLoading ? (
-              <span>Loading...</span>
-            ) : (
-              <>
+          {isLoading ? (
+            <CircularProgress />
+          ) : (
+            <>
+              <div className="product-grid-container">
                 {product?.pubId ? (
                   <>
                     <div className="product-grid-item img-wrapper">img</div>
@@ -91,7 +94,11 @@ const Product = () => {
                             });
                         }}
                       >
-                        {buttonDisabled ? "Przekierowuje..." : "Kup teraz"}
+                        {buttonDisabled ? (
+                          <CircularProgress className="loading-anim" />
+                        ) : (
+                          "Kup teraz"
+                        )}
                       </button>
                       {error && (
                         <div
@@ -108,9 +115,9 @@ const Product = () => {
                 ) : (
                   <Navigate to={"/offer"} />
                 )}
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          )}
         </section>
         <Footer />
       </div>

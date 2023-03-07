@@ -1,3 +1,4 @@
+import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import IProduct from "../../interfaces/IProduct";
@@ -8,6 +9,7 @@ import "./Offer.css";
 
 const Offer = () => {
   const [products, setProducts] = useState<Array<IProduct>>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${SERVER_DOMAIN}/api/cards/getProducts`, {
@@ -15,9 +17,14 @@ const Offer = () => {
       headers: fetchHeaders,
     })
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+      })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -26,30 +33,34 @@ const Offer = () => {
       <div className="offer">
         <section className="mh offer-section">
           <h2 className="offer-header">Oferta</h2>
-          <div className="offer-products">
-            {products &&
-              products.map((product) => {
-                return (
-                  <div
-                    className="offer-single-product"
-                    key={product.pubId as React.Key}
-                  >
-                    <NavLink
-                      className="offer-inner-wrapper"
-                      to={`/offer/${product.pubId}`}
+          {isLoading ? (
+            <CircularProgress className="loading-anim" />
+          ) : (
+            <div className="offer-products">
+              {products &&
+                products.map((product) => {
+                  return (
+                    <div
+                      className="offer-single-product"
                       key={product.pubId as React.Key}
                     >
-                      <div className="offer-image-wrapper"></div>
-                      <div className="offer-description-container">
-                        {" "}
-                        {product.name}
-                        <span>{product.price} zł</span>
-                      </div>
-                    </NavLink>
-                  </div>
-                );
-              })}
-          </div>
+                      <NavLink
+                        className="offer-inner-wrapper"
+                        to={`/offer/${product.pubId}`}
+                        key={product.pubId as React.Key}
+                      >
+                        <div className="offer-image-wrapper"></div>
+                        <div className="offer-description-container">
+                          {" "}
+                          {product.name}
+                          <span>{product.price} zł</span>
+                        </div>
+                      </NavLink>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
         </section>
         <Footer />
       </div>

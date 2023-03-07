@@ -1,3 +1,4 @@
+import CircularProgress from "@mui/material/CircularProgress";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -8,7 +9,9 @@ const ProtectedRoute = () => {
   return (
     <>
       {currentUser?.pending ? (
-        <div>Loading...</div>
+        <section className="mh" style={{ background: "var(--bg-color)" }}>
+          <CircularProgress />
+        </section>
       ) : (
         <>{user?.isLoggedIn ? <Outlet /> : <Navigate to={"/login"} />}</>
       )}

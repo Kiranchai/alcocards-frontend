@@ -9,6 +9,7 @@ const Modal = ({ message, open, onClose }: IModalProps) => {
     <>
       <div className="modal-layout"></div>
       <div className="modal">
+        {/* <h2>Powiadomienie</h2> */}
         <span className="modal-message">{message}</span>
         <button className="submit-btn" onClick={onClose}>
           Rozumiem
