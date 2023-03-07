@@ -82,6 +82,10 @@ const PasswordRecovery = () => {
                     className="form-input"
                     placeholder="********"
                   />
+                  <span className="password-requirements">
+                    Użyj co najmniej ośmiu znaków, w tym jednocześnie małych i
+                    wielkich liter, cyfr i symboli <b>#?!@$%^&-</b>
+                  </span>
                   <button
                     type="submit"
                     onClick={handleSubmit}

@@ -94,6 +94,7 @@ const Register = () => {
                     className="form-input"
                     placeholder="********"
                   />
+
                   <label className="login-label">Powtórz hasło</label>
                   <input
                     type={"password"}
@@ -103,6 +104,11 @@ const Register = () => {
                     className="form-input"
                     placeholder="********"
                   />
+
+                  <span className="password-requirements">
+                    Użyj co najmniej ośmiu znaków, w tym jednocześnie liter,
+                    cyfr i symboli #?!@$%^&-
+                  </span>
                   <button
                     type="submit"
                     onClick={handleSubmit}
