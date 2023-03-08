@@ -84,7 +84,8 @@
 
     .navbar-list li{
         width: 100%;
-        background-color: rgb(0, 116, 0);
+        background-color: rgb(73, 49, 72);
+        border-bottom: 1px groove rgb(131, 131, 131);
     }
 
     .navbar-left{
