@@ -30,7 +30,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCurrentUser({ currentUser: data, pending: false });
+        if (data.type === "error") {
+          setCurrentUser({ pending: false });
+          return console.log(data.message);
+        } else {
+          setCurrentUser({ currentUser: data, pending: false });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 

@@ -8,7 +8,7 @@ import { CircularProgress } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const MyCards = () => {
-  const [cards, setCards] = useState<Array<IProduct> | null>([]);
+  const [cards, setCards] = useState<Array<IProduct>>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
