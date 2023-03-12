@@ -24,13 +24,38 @@
     max-width: 25rem; 
     max-height: 75vh;
     width: 100%;
-    background-color: rgb(121, 121, 121);
-    transition-property: transform, opacity, filter, z-index;
+    background: rgb(120,22,101);
+background: radial-gradient(circle, rgb(43, 5, 36) 0%, rgb(0, 0, 0) 90%);
+    transition-property: transform, opacity, z-index;
     transition-duration: .6s;
     transition-timing-function: ease-in-out;
     padding: 1rem;
-    border-radius: .75rem;
-    will-change: transform, opacity, filter;
+    border-radius: 1rem;
+    will-change: transform, opacity;
+    text-align: center;
+    
+
+}
+
+.gamecard-container{
+    width: 100%;
+    padding: 1rem .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    text-shadow: 2px 2px 2px black;
+    
+}
+
+.gamecard-title{
+    font-size: clamp(2rem, 9vw, 3rem);
+    padding: .25rem;
+
+}
+
+.gamecard-description{
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-weight: 300;
 }
 
 .current{

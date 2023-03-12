@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { SERVER_DOMAIN } from "../../utils/Variables";
 import fetchHeaders from "../../utils/Headers";
 import { CircularProgress } from "@mui/material";
+import drinkImage from "../../images/drink_1.png";
 
 const Game = () => {
   const { id } = useParams();
@@ -99,9 +100,29 @@ const Game = () => {
                   ref={(el) => (itemsRef.current[i] = el)}
                   key={i}
                 >
-                  {card.title}
-                  <br />
-                  {card.description}
+                  <div className="gamecard-container">
+                    <h3 className="gamecard-title">{card.title}</h3>
+                    <h4 className="gamecard-description">{card.description}</h4>
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      zIndex: "2",
+                      filter: "opacity(.4)",
+                    }}
+                  >
+                    <img
+                      src={drinkImage}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
                   {i === 0 ? (
                     ""
                   ) : (
