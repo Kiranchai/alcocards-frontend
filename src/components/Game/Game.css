@@ -36,9 +36,6 @@
 .current{
     z-index: 7;
     opacity: 1;
-    /* -webkit-box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1);
--moz-box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1);
-box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1); */
 }
 
 .next{
@@ -46,8 +43,6 @@ box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1); */
     z-index: 6;
     -webkit-transform: translate(50%, 3%) rotate(5deg) scale(.8);
             transform: translate(50%, 3%) rotate(5deg) scale(.8);
-    /* -webkit-filter: blur(5px);
-            filter: blur(5px); */
 }
 
 .prev{
@@ -55,12 +50,11 @@ box-shadow: 2px 8px 23px -6px rgba(39, 39, 47, 1); */
     z-index: 6;
             transform: translate(-50%, 3%) rotate(-7deg) scale(.8);
     -webkit-transform: translate(-50%, 3%) rotate(-7deg) scale(.8);
-    /* filter: blur(5px);
-    -webkit-filter: blur(5px); */
 }
 
 .hidden{
     opacity: 0;
+    z-index: 5;
             transform: translate(90%, 3%) rotate(5deg) scale(.6);
     -webkit-transform: translate(90%, 3%) rotate(5deg) scale(.6);
 }
