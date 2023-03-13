@@ -6,7 +6,7 @@
   --bg-main:rgb(45, 20, 44);
   --bg-secondary: rgb(81, 2, 50);
   --dark-pink: rgb(105, 54, 89, .7);
-  --bg-color: linear-gradient(0deg, rgba(81,10,50,1) 0%, rgba(45,20,44,1) 35%);
+  --bg-color: linear-gradient(0deg, #510a32 0%, rgba(45,20,44,1) 35%);
   --blueish:rgb(158, 158, 158);
 }
 
