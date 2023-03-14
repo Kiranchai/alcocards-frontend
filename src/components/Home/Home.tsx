@@ -1,6 +1,9 @@
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import Footer from "../Footer/Footer";
+import drinkImage from "../../images/drink_1.png";
 import "./Home.css";
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const Home = () => {
   const currentUser = useAuth();
@@ -14,20 +17,16 @@ const Home = () => {
           <main className="home-section">
             <div className="mh welcome">
               <div className="welcome-container">
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div>
-                    <h1>Party starter</h1>
-                    <span>
-                      Rozkręć swoją imprezę dzięki interaktywnym kartom!
-                    </span>
-                  </div>
+                <div className="welcome-container-grid-item">
+                  <h1 className="welcome-header">
+                    Przenieś swoje imprezy na{" "}
+                    <b style={{ color: "#8b0000" }}>wyższy</b> poziom
+                  </h1>
+                  <NavLink className="welcome-btn" to={"/offer"}>
+                    Zobacz naszą ofertę
+                  </NavLink>
                 </div>
+                <div className="welcome-container-grid-item"></div>
               </div>
             </div>
 
